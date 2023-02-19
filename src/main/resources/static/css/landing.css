@@ -51,7 +51,7 @@ main {
     flex-direction: column;
     align-items: center;
     width: 230px;
-    height: 300px;
+    height: 330px;
     border: 1.5px solid black;
     margin-top: 10px;
     border-radius: 8px;
@@ -66,8 +66,8 @@ main {
     justify-content: space-between;
 }
 .button-cart {
-    width: 80px;
-    height: 30px;
+    width: 500px;
+    height: 40px;
     background-color: #4a9d06;
     border-radius: 4px;
     color: white;
@@ -76,7 +76,7 @@ main {
 }
 .button-cart:hover {
     background-color: black;
-    color: #069d14;
+    color: #c3e005;
     border: 1px solid black;
     cursor: pointer;
 }

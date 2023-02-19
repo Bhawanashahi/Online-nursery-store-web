@@ -1,33 +1,40 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 body {
-  flex-wrap: wrap;
-  font-family: 'Poppins', sans-serif;
-  background-color: #D2D2D2;
+    flex-wrap: wrap;
+    font-family: 'Poppins', sans-serif;
+    background-color: #069d14;
+    overflow-x: hidden;
 }
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 /* main */
 main {
-  display: flex;
-  height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    background-color: #D2D2D2;
 }
 .main-div {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  width: 1000px;
-  margin-left: 100px;
-  margin-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1000px;
+    /*margin-left: 100px;*/
+    margin-top: 20px;
 }
 h2 {
-  color: #069d14;
-  text-decoration: underline;
+    color: #069d14;
+    text-decoration: underline;
 }
 p {
-  margin-top: 10px;
+    margin-top: 10px;
 }

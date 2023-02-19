@@ -53,7 +53,7 @@ input{
   font-weight: bold;
     color: black;
     font-size: 22px;
-    background: #05b1eb;
+    background: #069d14;
     border-color: rgba(255, 255, 255, 0.564);
     border-left: none; 
     border-bottom: none;/* Prevent double borders */
@@ -63,11 +63,11 @@ input{
     
     color: black;
     font-weight: bold;
-    border: solid  orange;
+    border: solid #c3e005;
  }
 
 .btn2:hover {
-background: #0b7dda;
+background: #069d14;
 border: solid black;
 }
 
@@ -119,13 +119,13 @@ a{
     width:100%;
    
     border-radius: 24px;
-    background-color: rgb(225, 152, 16);
+    background-color: rgb(195, 224, 5);
     color:white;
     border-color: white;
 }
 .btn3:hover {
     
-  background: #0b7dda;;
+  background: #069d14;;
     font-weight: bolder;
     border: white solid;
  }
@@ -174,24 +174,24 @@ table {
     font-family: 'Material Icons';
   }
   .edit{
-    color: rgb(225, 152, 16);
+    color: rgb(21, 21, 21);
     margin-right: 2%;
     border: none;
     background: transparent;
     }
   .delete{
-    color: rgb(165, 8, 8);
+    color: rgb(21, 21, 21);
     margin-left: 3%;
     border: none;
     background: transparent;
 }
 .edit:hover{
     font-weight: bolder;
-    background-color: #05b1eb;
+    background-color: #069d14;
 }
 .delete:hover{
     font-weight: bolder;
-    background-color:  #05b1eb;
+    background-color: #069d14;
 }
   
   i{
@@ -243,7 +243,7 @@ table {
 
     }
     .btn4:hover {
-        border:solid orange;
+        border:solid #c3e005;
       
            
          }
@@ -297,7 +297,7 @@ table {
    
        }
        .btn4:hover {
-           border:solid orange;
+           border:solid #c3e005;
          
               
             }
@@ -350,7 +350,7 @@ table {
    
        }
        .btn4:hover {
-           border:solid orange;
+           border:solid #c3e005;
          
               
             }

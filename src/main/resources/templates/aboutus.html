@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <link rel="icon" sizes="200x200" th:href="@{/images/kanpai-logo-icon.png}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/aboutus.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script th:src="@{/javascript/header.js}" defer></script>
+</head>
+<body>
+<header th:replace="~{/fragments/header.html}"></header>
+<main>
+  <div class="main-div">
+    <h2>About us</h2>
+    <p>GoGreen is an online nursery store that specializes in selling a variety of indoor and outdoor plants, gardening supplies, and accessories. The store offers a wide range of plant categories, including succulents, herbs, fruit trees, and more. GoGreen aims to provide high-quality, healthy plants that are shipped directly to customers' doorsteps. They also offer a 30-day plant guarantee, which allows customers to receive a replacement or a refund if a plant arrives in poor condition. GoGreen provides helpful resources and guides on its website for plant care and gardening tips, and offers a plant subscription service that delivers a new plant to customers each month.</p>
+  </div>
+</main>
+<footer th:replace="~{/fragments/footer.html}"></footer>
+</body>
+</html>

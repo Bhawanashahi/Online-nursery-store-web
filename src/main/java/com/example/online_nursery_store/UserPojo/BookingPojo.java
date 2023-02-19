@@ -13,19 +13,21 @@ import lombok.Setter;
 public class BookingPojo {
     private Integer id;
     private  String fullname;
-    private String amount;
+    private String price;
     private  String date;
     private  String mobile_no;
-    private  String number_of_plants;
+    private  String noofplant;
     private  String checkin;
+    private  String address;
 
     public BookingPojo(Booking booking) {
         this.id=booking.getId();
-        this.number_of_plants=booking.getNumber_of_plants();
+        this.noofplant=booking.getNoofplant();
         this.mobile_no=booking.getMobileNo();
         this.fullname=booking.getFullname();
         this.checkin=booking.getCheckin();
-        this.amount=booking.getTotal();
+        this.price=booking.getPrice();
+        this.address=booking.getAddress();
         this.date=booking.getDate();
 
     }

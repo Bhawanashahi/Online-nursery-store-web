@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
     public final UserRepo userRepo;
 
-    private final ContactRepo contactRepo;
+
     private final BookingRepo bookingRepo;
     private final JavaMailSender mailSender;
     private final ThreadPoolTaskExecutor taskExecutor;
@@ -50,7 +50,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     @Qualifier("emailConfigBean")
     private Configuration emailConfig;
-
 
 
     @Override
@@ -62,17 +61,19 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
         return "created";
     }
-    private void sendPassword(String email, String password ){
+
+    private void sendPassword(String email, String password) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
         message.setSubject("Your new password is:");
         message.setText(password);
         mailSender.send(message);
     }
+
     @Override
-    public void processPasswordResetRequest(String email){
+    public void processPasswordResetRequest(String email) {
         Optional<User> optionalUser = userRepo.findByEmail(email);
-        if(optionalUser.isPresent()){
+        if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             String password = generatePassword();
             sendPassword(email, password);
@@ -82,13 +83,14 @@ public class UserServiceImpl implements UserService {
             userRepo.save(user);
         }
     }
+
     @Override
     public void sendEmail() {
         try {
             Map<String, String> model = new HashMap<>();
 
             MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,  StandardCharsets.UTF_8.name());
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
 
             Template template = emailConfig.getTemplate("emailTemp.ftl");
             String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
@@ -112,12 +114,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateResetPassword(String email) {
         User user = (User) userRepo.findByEmail(email)
-                .orElseThrow(()-> new RuntimeException("Invalid User email"));
+                .orElseThrow(() -> new RuntimeException("Invalid User email"));
         String updated_password = generatePassword();
         try {
             userRepo.updatePassword(updated_password, email);
             return "CHANGED";
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "ds";
@@ -128,8 +130,8 @@ public class UserServiceImpl implements UserService {
         String password = "";
         Random r = new Random();
         for (int i = 0; i < length; i++) {
-            int randomChar = (int)(r.nextInt(94) + 33);
-            char c = (char)randomChar;
+            int randomChar = (int) (r.nextInt(94) + 33);
+            char c = (char) randomChar;
             password += c;
         }
         return password;
@@ -143,52 +145,27 @@ public class UserServiceImpl implements UserService {
         return new UserPojo(user);
     }
 
-    @Override
-    public String submitMsg(ContactPojo contactPojo) {
-        Contact contact = new Contact();
-        contact.setFullname(contactPojo.getFullname());
-        contact.setEmail(contactPojo.getEmail());
-        contact.setSubject(contactPojo.getSubject());
-        contact.setMessage(contactPojo.getMessage());
-        contactRepo.save(contact);
-        return "sent";
-
-    }
 
 
-    @Override
-    public List<Contact> fetchAllContact() {
-        return null;
-    }
 
 
-    @Override
-    public void save(ContactPojo contactPojo) {
-             Contact contact=new Contact();
-            if(contactPojo.getId()!=null){
-                contact.setId(contactPojo.getId());
-            }
-            contact.setFullname(contactPojo.getFullname());
-            contact.setEmail(contactPojo.getEmail());
-            contact.setSubject(contactPojo.getSubject());
-            contact.setMessage(contactPojo.getMessage());
-            contactRepo.save(contact);
-        }
     @Override
     public String save(BookingPojo bookingPojo) {
-        Booking booking=new Booking();
-        if(bookingPojo.getId()!=null){
+        Booking booking = new Booking();
+        if (bookingPojo.getId() != null) {
             booking.setId(bookingPojo.getId());
         }
         booking.setFullname(bookingPojo.getFullname());
-        booking.setNumber_of_plants(bookingPojo.getNumber_of_plants());
+        booking.setNoofplant(bookingPojo.getNoofplant());
         booking.setMobileNo(bookingPojo.getMobile_no());
         booking.setCheckin(bookingPojo.getCheckin());
         booking.setDate(bookingPojo.getDate());
-        booking.setTotal(bookingPojo.getAmount());
+        booking.setPrice(bookingPojo.getPrice());
+        booking.setAddress(bookingPojo.getAddress());
         bookingRepo.save(booking);
         return null;
     }
+
 
 //    @Override
 //    public Booking fetchById(Integer id) {
@@ -201,7 +178,7 @@ public class UserServiceImpl implements UserService {
 //        return bookingRepo.findById(id).orElseThrow(()->new RuntimeException("not found"));
 //    }
 
-    public List<Booking> fetchAll(){
+    public List<Booking> fetchAll() {
         return this.bookingRepo.findAll();
     }
 
@@ -213,14 +190,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
-
-
-
-
-
-
-
 //    @Override
 //    public void deleteById(Integer id) {
 //
@@ -230,4 +199,7 @@ public class UserServiceImpl implements UserService {
     public Booking fetchById(Integer id) {
         return null;
     }
+
+
 }
+

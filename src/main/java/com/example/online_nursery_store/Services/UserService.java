@@ -16,7 +16,7 @@ public interface UserService {
 
     UserPojo findByEmail(String email);
 
-    String submitMsg(ContactPojo contactPojo);
+
 
     void processPasswordResetRequest(String email);
 
@@ -26,20 +26,22 @@ public interface UserService {
 
 
 
-    List<Contact> fetchAllContact();
 
     List<Booking> fetchAll();
 
-    void save(ContactPojo contactPojo);
+
+
 
     void deleteById(Integer id);
 
 
 
 
+    String save(BookingPojo bookingPojo);
+
     abstract Booking fetchById(Integer id);
 
-    String save(BookingPojo bookingPojo);
+
 
 
 //    UserPojo findByPassword(String password);

@@ -12,4 +12,8 @@ public interface ProductService {
     List<Product> fetchAll();
 
     String save(ProductPojo productPojo) throws IOException;
+
+    Product fetchById(Integer id);
+
+    void deleteById(Integer id);
 }

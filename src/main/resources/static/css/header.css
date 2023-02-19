@@ -23,9 +23,9 @@
 .navbar-list li a {
     color: black;
     text-decoration: none;
-}
-.navbar-link:hover {
-    padding-left: -5px;
+/*}*/
+/*.navbar-link:hover {*/
+/*    padding-left: -5px;*/
 }
 
 .navbar-link:link,
@@ -39,10 +39,10 @@
     transition: all 0.3s;
 }
 
-.navbar-link:hover,
-.navbar-link:active {
-    color: black;
-}
+/*.navbar-link:hover,*/
+/*.navbar-link:active {*/
+/*    color: black;*/
+/*}*/
 
 .mobile-navbar-btn {
     display: none;

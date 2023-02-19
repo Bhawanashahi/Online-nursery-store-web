@@ -31,8 +31,14 @@ public class Booking {
     @Column(name="amount")
     private String total;
 
-    @Column(name = "number_of_plants")
-    private String number_of_plants;
+    @Column(name = "noofplant")
+    private String noofplant;
+
+    @Column(name = "price")
+    private String price;
+
+    @Column(name = "address")
+    private String address;
 
     @Column(name = "mobile_no")
     private String mobileNo;

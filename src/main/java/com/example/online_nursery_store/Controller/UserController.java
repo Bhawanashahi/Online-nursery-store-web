@@ -1,5 +1,6 @@
 package com.example.online_nursery_store.Controller;
 
+import com.example.online_nursery_store.Services.ContactServices;
 import com.example.online_nursery_store.Services.GalleryService;
 import com.example.online_nursery_store.Services.UserService;
 import com.example.online_nursery_store.UserPojo.BookingPojo;
@@ -28,6 +29,8 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
+
+    private final ContactServices contactServices;
     private final GalleryService galleryServices;
 
 
@@ -72,7 +75,7 @@ public class UserController {
 
     @PostMapping("/send-message")
     public String submitMessage(@Valid ContactPojo contactPojo) {
-        userService.submitMsg(contactPojo);
+        contactServices.submitMsg(contactPojo);
         return "redirect:contact";
     }
 
@@ -81,7 +84,7 @@ public class UserController {
         if (principal != null) {
             model.addAttribute("info", userService.findByEmail(principal.getName()));
         }
-        return "/about-us";
+        return "/aboutus";
     }
 
 

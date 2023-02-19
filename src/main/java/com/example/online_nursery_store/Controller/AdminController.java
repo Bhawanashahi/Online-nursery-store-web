@@ -1,5 +1,6 @@
  package com.example.online_nursery_store.Controller;
 
+        import com.example.online_nursery_store.Services.ContactServices;
         import com.example.online_nursery_store.Services.GalleryService;
         import com.example.online_nursery_store.Services.ProductService;
         import com.example.online_nursery_store.Services.UserService;
@@ -8,7 +9,9 @@
         import com.example.online_nursery_store.UserPojo.GalleryPojo;
         import com.example.online_nursery_store.UserPojo.ProductPojo;
         import com.example.online_nursery_store.entity.Booking;
+        import com.example.online_nursery_store.entity.Contact;
         import com.example.online_nursery_store.entity.Gallery;
+        import com.example.online_nursery_store.entity.Product;
         import jakarta.validation.Valid;
         import lombok.RequiredArgsConstructor;
         import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -27,6 +30,7 @@
         import java.io.File;
         import java.io.IOException;
         import java.nio.file.Files;
+        import java.security.Principal;
         import java.util.Base64;
         import java.util.HashMap;
         import java.util.List;
@@ -41,6 +45,7 @@ public class AdminController {
 
      private final GalleryService galleryServices;
     private final UserService userService;
+     private final ContactServices contactServices;
     @GetMapping("/dashboard")
     public String getAdminPage() {
         return "admin_dashboard";
@@ -130,6 +135,47 @@ public class AdminController {
         productService.save(productPojo);
         return "redirect:/landing";
     }
+     @GetMapping("/order-list")
+     public String getOrderListPage(Model model, Principal principal) {
+         if (principal!=null) {
+             model.addAttribute("info", userService.findByEmail(principal.getName()));
+         }
+         return "order_list";
+     }
+     @GetMapping("/product-list")
+     public String getProductList(Model model, Principal principal) {
+         if (principal!=null) {
+             model.addAttribute("info", userService.findByEmail(principal.getName()));
+         }
+         List<Product> products = productService.fetchAll();
+         model.addAttribute("product", products.stream().map(product ->
+                 Product.builder()
+                         .id(product.getId())
+                         .imageBase64(getImageBase64(product.getPhoto()))
+                         .name(product.getName())
+                         .quantity(product.getQuantity())
+                         .price(product.getPrice())
+                         .build()
+         ));
+         return "productlist";
+     }
+     @GetMapping("/editProduct/{id}")
+     public String editProducts(@PathVariable("id") Integer id, Model model, Principal principal) {
+         if (principal!=null) {
+             model.addAttribute("info", userService.findByEmail(principal.getName()));
+         }
+         Product products = productService.fetchById(id);
+         model.addAttribute("product", new ProductPojo(products));
+         return "add_products";
+     }
+     @GetMapping("/deleteProduct/{id}")
+     public String deleteProducts(@PathVariable("id") Integer id, Model model, Principal principal) {
+         if (principal!=null) {
+             model.addAttribute("info", userService.findByEmail(principal.getName()));
+         }
+         productService.deleteById(id);
+         return "redirect:/admin/product-list";
+     }
 
 
 //    @GetMapping("/contactlist")
@@ -145,7 +191,7 @@ public class AdminController {
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             return "login";
         }
-        userService.save(contactPojo);
+        contactServices.save(contactPojo);
         return "redirect:/landing";
     }
 
@@ -169,7 +215,7 @@ public class AdminController {
     public String getUserList(Model model) {
         List<Booking> bookings = userService.fetchAll();
         model.addAttribute("bookinglist", bookings);
-        return "viewCustomerlist";
+        return "AllBooking";
     }
 
 
@@ -177,7 +223,7 @@ public class AdminController {
     public String getAllBooking(Model model) {
         List<Booking> bookings = userService.fetchAll();
         model.addAttribute("bookinglist", bookings);
-        return "Admin/AllBooking";
+        return "AllBooking";
     }
 
 
@@ -198,11 +244,41 @@ public class AdminController {
         return "redirect:/admin/list";
     }
 
-    @GetMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") Integer id, Model model) {
-        Booking booking = userService.fetchById(id);
-        model.addAttribute("newBooking", new BookingPojo(booking));
-        return "newbookings";
-    }
+     @GetMapping("/edit/{id}")
+     public String editUser(@PathVariable("id") Integer id, Model model) {
+         Booking booking = userService.fetchById(id);
+         model.addAttribute("newBooking", new BookingPojo(booking));
+         return "newbookings";
+     }
+
+
+     @GetMapping("/delete/{id}")
+     public String deleteUser(@PathVariable("id") Integer id) {
+         userService.deleteById(id);
+         return "redirect:/admin/list";
+     }
+     @GetMapping("/contactlist")
+     public String getContactList(Model model) {
+         List<Contact> contact = contactServices.fetchAll();
+         model.addAttribute("contact", contact);
+         return "contacttable";
+     }
+
+
+     @GetMapping("/allcontactlist")
+     public String getAllContact(Model model) {
+         List<Contact> contact = contactServices.fetchAll();
+         model.addAttribute("contact", contact);
+         return "contacttable";
+     }
+
+
+
+//     @GetMapping("/delete/{id}")
+//     public String deleteContactUser(@PathVariable("id") Integer id) {
+//         contactServices.deleteById(id);
+//         return "redirect:/admin/allcontactlist";
+//     }
+
 }
 

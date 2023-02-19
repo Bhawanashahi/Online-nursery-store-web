@@ -57,52 +57,36 @@
             <div class="error"></div>
 
         </div>
-
-<!--        <div class="input-control">-->
-
-<!--            <label for="RoomType">Plant Type</label>-->
-
-<!--            <select name="RoomType" id="RoomType"  th:field="*{room}" th:value="${booking.room}">-->
-
-<!--                <option value="Single Room">Herbs</option>-->
-
-<!--                <option value="Couple Room">Couple</option>-->
-
-<!--                <option value="Family Room">Family</option>-->
-
-<!--                <option value="Group Room">Group</option>-->
-
-<!--                <option value="Honeymoon Room">Honeymoon</option>-->
-
-<!--            </select>-->
-
-<!--            <div class="error"></div>-->
-
-<!--        </div>-->
-
         <div class="input-control">
 
-            <label for="Number">Number Of Plants</label>
+            <label for="Noofplant">No Of Plants</label>
 
-            <!-- <input id="Number"name="Number" type="number"> -->
-
-            <select  id="people"  th:field="*{number_of_plants}" th:value="${booking.number_of_plants}">
-
-                <option value="1">1 </option>
-
-                <option value="2">2 </option>
-
-                <option value="3">3 </option>
-
-                <option value="4">4 </option>
-
-                <option value="more">more than 4</option>
-
-            </select>
+            <input id="Noofplant" name="number" type="number"  th:field="*{noofplant}" onkeyup="mult(this.value);" th:value="${noofplant}">
 
             <div class="error"></div>
 
         </div>
+        <div class="input-control">
+
+            <label for="Price">Price</label>
+
+            <input id="Price" name="Price" type="number" th:field="*{price}" th:value="${price}">
+
+            <div class="error"></div>
+
+        </div>
+        <div class="input-control">
+
+            <label for="Address">Address</label>
+
+            <input id="Address" name="Address" type="name" th:field="*{address}" th:value="${address}">
+
+            <div class="error"></div>
+
+        </div>
+
+
+
 
         <div class="input-control">
 
@@ -118,7 +102,7 @@
 
 
         <!--        Amount -->
-        <input type="text" hidden="hidden" id="amount" th:field="*{amount}" th:value="${booking.amount}">
+
 
         <input type="text" hidden="hidden" id="date" th:field="*{date}" th:value="${booking.date}">
 <!--        <input type="text" hidden="hidden" name="user_id" th:value="${info.id}">-->
@@ -128,12 +112,6 @@
 
         <div class="input-control">
 
-<!--            <label for="date">Check Out</label>-->
-
-<!--            &lt;!&ndash; <input id="date" name="date" type="number"> &ndash;&gt;-->
-
-<!--            <input type="date" name="date" id="checkOutDate" placeholder="date"   th:field="*{checkout}" th:value="${booking.checkout}">-->
-<!--            <div class="error"></div>-->
 
         </div>
         <!--                    <input type="submit" value="SUBMIT">-->
@@ -150,31 +128,16 @@
     </form>
 
 </div>
-
 <script>
-    function myFunction() {
-        let A = document.getElementById("RoomType").value;
-        if(A=="Single Room"){
-            console.log(200);
-            var val=document.getElementById("amount");
-            val.setAttribute("value","$200");
-        }
-        else if(A=="Couple Room"){
-            var val=document.getElementById("amount");
-            val.setAttribute("value","$300");
-        }
-        else if(A=="Family Room"){
-            var val=document.getElementById("amount");
-            val.setAttribute("value","$400");          }
-        else if(A=="Group Room"){
-            var val=document.getElementById("amount");
-            val.setAttribute("value","$500");          }
-        else{
-            var val=document.getElementById("amount");
-            val.setAttribute("value","$600");          }
-
+    function mult(value){
+        var x;
+        x=150*value;
+        document.getElementById("Price").value=x;
     }
+
 </script>
+
+
 <script>
     $(document).ready(function(){
         var today = new Date();
