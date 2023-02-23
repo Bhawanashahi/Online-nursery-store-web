@@ -10,8 +10,7 @@
                 <li><a th:href="@{/landing#products-section}"><i class="fa-solid fa-gift"></i> Products</a></li>
                 <li><a th:href="@{/user/contact}"><i class="fa-solid fa-address-book"></i> Contact </a></li>
                 <li><a th:href="@{/user/about}"><i class="fa-solid fa-address-card"></i> About </a></li>
-<!--                       <li><a th:href="@{/user/viewGallery}"><i class="fa-solid fa-address-card"></i>Gallery</a></li>-->
-<!--                <li><a th:href="@{/user/notifications}"><i class="fa-solid fa-flag"></i> Notices</a></li>-->
+                <li><a th:href="@{/user/viewGallery}"><i class="fa-solid fa-address-card"></i>Gallery</a></li>
                 <li th:if="${info!=null}"><a th:href="@{/user/profile}" th:text="${info.getEmail()}"><i class="fa-solid fa-user"></i> </a></li>
                 <li th:if="${info==null}"><a th:href="@{/user/profile}"><i class="fa-solid fa-user"></i> Login</a></li>
             </ul>

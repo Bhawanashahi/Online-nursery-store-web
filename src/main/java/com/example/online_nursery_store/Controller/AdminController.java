@@ -69,9 +69,10 @@ public class AdminController {
          galleryServices.saveGallery(galleryPojo);
          redirectAttributes.addFlashAttribute("successMsg", "Gallery saved successfully");
 
-         return "redirect:/gallery/list";
+         return "redirect:/admin/llist";
      }
-     @GetMapping("/gallerylist")
+
+     @GetMapping("/llist")
      public String displayGallery( Model model) {
          List<Gallery> galleries = galleryServices.fetchAll();
          model.addAttribute("gallerylist", galleries.stream().map(gallery ->
@@ -85,9 +86,12 @@ public class AdminController {
          return "gallerytable";
      }
      @GetMapping("/editGallery/{id}")
-     public String editGallery(@PathVariable("id") Integer id, Model model) {
+     public String editGallery(@PathVariable("id") Integer id, Model model, Principal principal) {
+         if (principal!=null) {
+             model.addAttribute("info", userService.findByEmail(principal.getName()));
+         }
          Gallery gallery = galleryServices.fetchById(id);
-         model.addAttribute("gallerylist", new GalleryPojo(gallery));
+         model.addAttribute("gallery", new GalleryPojo(gallery));
          return "adminGallery";
      }
 
@@ -95,7 +99,7 @@ public class AdminController {
      @GetMapping("/deleteGallery/{id}")
      public String deleteGallery(@PathVariable("id") Integer id) {
          galleryServices.deleteById(id);
-         return "redirect:/gallery/list";
+         return "redirect:/admin/llist";
      }
 
      public Map<String, String> validateRequest(BindingResult bindingResult) {
@@ -124,7 +128,6 @@ public class AdminController {
          }
          return Base64.getEncoder().encodeToString(bytes);
      }
-
     @GetMapping("/add-product")
     public String getAddProductPage(Model model) {
         model.addAttribute("product", new ProductPojo());

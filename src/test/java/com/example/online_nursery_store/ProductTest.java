@@ -9,52 +9,51 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.security.core.parameters.P;
 
 
-    @DataJpaTest
-    @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-    public class ProductTest {
+@DataJpaTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class ProductTest {
 
 
-        @Autowired
-        private ProductRepo productRepo;
+    @Autowired
+    private ProductRepo productRepo;
 
 
-        @Test
-        @Order(1)
-        public void saveContactTest() {
+    @Test
+    @Order(1)
+    public void saveContactTest() {
 
 
-            Product product = Product.builder()
-                    .photo("bhawana@gmail.com")
-                    .name("bhawana")
-                    .quantity("2")
-                    .price("505")
-                    .build();
+        Product product = Product.builder()
+                .photo("bhawana@gmail.com")
+                .name("bhawana")
+                .quantity("2")
+                .price("505")
+                .build();
 
-            productRepo.save(product);
+        productRepo.save(product);
 
-            Assertions.assertThat(product.getId()).isGreaterThan(1);
-        }
+        Assertions.assertThat(product.getId()).isGreaterThan(1);
+    }
 
-        @Test
-        @Order(2)
-        public void getProductTest() {
+    @Test
+    @Order(2)
+    public void getProductTest() {
 
-            Product product = Product.builder()
-                    .photo("bhawana@gmail.com")
-                    .name("bhawana")
-                    .quantity("2")
-                    .price("505")
-                    .build();
-
-
-            productRepo.save(product);
+        Product product = Product.builder()
+                .photo("bhawana@gmail.com")
+                .name("bhawana")
+                .quantity("2")
+                .price("505")
+                .build();
 
 
-            Product product1Created = productRepo.findById(product.getId()).get();
-            Assertions.assertThat(product1Created.getId()).isEqualTo(product.getId());
+        productRepo.save(product);
 
-        }
+
+        Product product1Created = productRepo.findById(product.getId()).get();
+        Assertions.assertThat(product1Created.getId()).isEqualTo(product.getId());
+
+    }
 }

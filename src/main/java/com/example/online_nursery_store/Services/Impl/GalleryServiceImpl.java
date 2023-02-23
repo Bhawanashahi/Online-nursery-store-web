@@ -20,7 +20,7 @@ import java.util.List;
 
 public class GalleryServiceImpl implements GalleryService {
     private final GalleryRepo galleryRepo;
-    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/dogshop/";
+    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/NurseryStore/";
 
 
     @Override

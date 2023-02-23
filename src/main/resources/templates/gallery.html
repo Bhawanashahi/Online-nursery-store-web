@@ -1,36 +1,36 @@
+
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Gallery</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-    <link rel="stylesheet" th:href="@{/css/header.css}">
-    <link rel="stylesheet" th:href="@{/css/footer.css}">
-    <link rel="stylesheet" th:href="@{/css/gallery.css}">
+    <title>Gallery</title>
+    <link rel="icon" sizes="200x200" th:href="@{/images/kanpai-logo-icon.png}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/gallery.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script th:src="@{/javascript/header.js}" defer></script>
 
-
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
-<div th:replace="~{/fragments/header.html}"></div>
+<header th:replace="~{/fragments/header.html}"></header>
 <section class="post container">
 
-    <div class="post-box tech" th:each="gallery:${gallerylist}" >
+    <div class="post-box tech" th:each="gallery:${llist}" >
         <img th:src="'data:image/png;base64,'+${gallery.imageBase64}" alt="" class="post-img">
         <h3 class="post-date" th:text="${gallery.title}"> </h3>
 
     </div>
 
-
 </section>
 
 
-<div th:replace="~{/fragments/footer.html}"></div>
+<footer th:replace="~{/fragments/footer.html}"></footer>
 </body>
 </html>

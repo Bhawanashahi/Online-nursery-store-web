@@ -127,7 +127,7 @@ public String getViewGallery(Model model, Principal principal) {
         model.addAttribute("prof", userService.findByEmail(principal.getName()));
     }
     List<Gallery> gallerys = galleryServices.fetchAll();
-    model.addAttribute("gallerylist", gallerys.stream().map(gallery ->
+    model.addAttribute("llist", gallerys.stream().map(gallery ->
             Gallery.builder()
                     .id(gallery.getId())
                     .title(gallery.getTitle())
