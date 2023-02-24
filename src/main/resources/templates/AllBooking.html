@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Rooms</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <link rel="shortcut icon" type="x-icon" th:href="@{~/images/abc.png}">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script th:src="@{~/javascript/notification.js}" defer></script>
+  <link rel="stylesheet" th:href="@{~/css/adminBlogPage.css}">
+  <link rel="stylesheet" th:href="@{/css/viewCustomerlist.css}">
+</head>
+<body>
+
+<div class="Main-wrapper">
+  <div class="wrapper-top">
+    <h2>Order</h2>
+    <button class="btn1"><a th:href="@{/admin/newbooking}">+ New Order</a></button>
+
+  </div>
+
+  <div style="overflow-x:auto;"></div>
+  <table>
+    <thead>
+    <tr>
+      <th>Cust_Id</th>
+      <th>Full Name</th>
+      <th>Date</th>
+      <th>Checkin_date</th>
+      <th>Phone-number</th>
+      <th>Number</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="booking:${bookinglist}">
+      <td th:text="${booking.id}"></td>
+      <td th:text="${booking.fullname}"></td>
+      <td th:text="${booking.date}"></td>
+      <td th:text="${booking.checkin}"></td>
+      <td th:text="${booking.mobileNo}"></td>
+      <td th:text="${booking.number_of_plants}"></td>
+      <!--                    <td> <a class="edit" href="#" >Active</a></td>-->
+      <!--                    <td> <a class="edit" href="#" >delete</a></td>-->
+      <!--                    <td> <a class="edit" href="#" >edit</a></td>-->
+      <td> <a class="edit" th:href="@{~/admin/delete/}+${booking.id}" >delete</a></td>
+      <td> <a class="edit" th:href="@{~/admin/edit/}+${booking.id}" >edit</a></td>
+
+    </tr>
+    </tbody>
+
+  </table>
+
+
+
+</div>
+
+</body>
+
+<script>
+  let myPage = "book";
+  let listGroupItem = Array.from(document.getElementsByClassName("list-group-item"));
+  listGroupItem.forEach(i=>{
+    i.classList.remove("active")
+  })
+  let activeID = document.getElementById(myPage);
+  activeID.classList.add("active");
+</script>
+
+</html>

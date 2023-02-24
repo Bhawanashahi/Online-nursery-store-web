@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  flex-wrap: wrap;
+  font-family: 'Poppins', sans-serif;
+  background-color: #D2D2D2;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* main */
+main {
+  display: flex;
+  height: 320px;
+}
+.main-div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 1000px;
+  margin-left: 100px;
+  margin-top: 80px;
+}
+h2 {
+  color: #069d14;
+  text-decoration: underline;
+}
+p {
+  margin-top: 10px;
+}

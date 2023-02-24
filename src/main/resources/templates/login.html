@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+        <div class="front">
+            <img th:src="@{/images/back.jpg}" alt="">
+        </div>
+    </div>
+
+    <div class="forms">
+        <form th:action="@{/login}" method="post">
+        <div class="form-content">
+            <div class="login-form">
+                <div class="title">Login</div>
+                    <div class="input-boxes">
+                        <div class="input-box">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" name= "email" placeholder="Enter your Email" required  autofocus/>
+                        </div>
+                        <div class="input-box">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name = "password" placeholder="Enter your password"  onclick="validateEmail()" onkeypress="validateEmail()" required autofocus/>
+                        </div>
+                        <div class="text"><a th:href="@{/user/forgotpassword}">Forgot password?</a></div>
+                        <div class="button input-box">
+                            <input type="submit" value="Sumbit" onclick="fill()">
+                        </div>
+                        <div class="text sign-up-text">Don't have an account?<a th:href="@{~/user/create}">Signup
+                            </div>
+                    </div>
+                  </form>
+            </div>
+    </div>
+
+     </body>
+</html>
